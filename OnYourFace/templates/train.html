@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+
+
+  </style>
+  <title>Flask Multiple Upload</title>
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        <li role="presentation"><a href="main">Home</a></li>
+        <li role="presentation"><a href="uploadPage">Upload</a></li>
+        <li role="presentation" class="active"><a href="trainPage">Train</a></li>
+        <li role="presentation"><a href="recognizePage">Recognize</a></li>
+      </ul>
+    </nav>
+    <h3 class="text-muted">OnYourFace</h3>
+  </div>
+
+  <div class="jumbotron">
+    <h1><strong>Train</strong></h1>
+    <form id="upload-form" action="{{ url_for('train') }}" method="POST" enctype="multipart/form-data">
+        <h2>Start Training {{count}} labels</h2>
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Train!" id="train-button">
+    </form>
+
+  </div>
+
+  <footer class="footer">
+    <p>&copy; On Your Face</p>
+  </footer>
+
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/uploadr.js') }}"></script>
+
+</body>
+</html>

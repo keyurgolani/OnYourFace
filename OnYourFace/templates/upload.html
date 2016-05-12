@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+
+
+  </style>
+  <title>Flask Multiple Upload</title>
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        <li role="presentation"><a href="main">Home</a></li>
+        <li role="presentation" class="active"><a href="uploadPage">Upload</a></li>
+        <li role="presentation"><a href="trainPage">Train</a></li>
+        <li role="presentation"><a href="recognizePage">Recognize</a></li>
+      </ul>
+    </nav>
+    <h3 class="text-muted">OnYourFace</h3>
+  </div>
+
+  <div class="jumbotron">
+    <h1><strong>Upload Training Photos</strong></h1>
+    <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+
+        <input type="text" size="20" class="form-control" name="firstName" placeholder="First Name" required autofocus>
+        <input type="text" size="20" class="form-control" name="lastName" placeholder="Last Name" required autofocus>
+        <input type="text" size="20" class="form-control" name="location" placeholder="Location" required autofocus>
+        <input type="date" size="20" class="form-control" name="birthdate" placeholder="Birthdate" required autofocus>
+
+        <h2>Files:</h2>
+        Select files OR drag them into the box below.
+        <input id="file-picker" type="file" class="form-control" name="file" accept="image/*" multiple><p>
+
+        <div id="dropbox" style="width: 80%; height: 100px; background: #FFF;" class="center">
+            Drag and Drop Files Here
+        </div><p>
+
+        <fieldset id="progress" style="display: none">
+            <legend>Files Progress</legend>
+
+            <div class="progress-trough">
+                <div id="progress-bar" class="progress-bar">0%</div>
+            </div>
+        </fieldset><p>
+
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Upload!" id="upload-button">
+    </form>
+
+  </div>
+
+  <footer class="footer">
+    <p>&copy; On Your Face</p>
+  </footer>
+
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/uploadr.js') }}"></script>
+
+</body>
+</html>

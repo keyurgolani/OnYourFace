@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+
+
+  </style>
+  <title>Flask Multiple Upload</title>
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        <li role="presentation"><a href="main">Home</a></li>
+        <li role="presentation"><a href="uploadPage">Upload</a></li>
+        <li role="presentation"><a href="trainPage">Train</a></li>
+        <li role="presentation" class="active"><a href="recognizePage">Recognize</a></li>
+      </ul>
+    </nav>
+    <h3 class="text-muted">OnYourFace</h3>
+  </div>
+
+  {%for person in peopleList:%}
+    <div class="jumbotron">
+      <h1><strong>{{person.firstName}}&nbsp;{{person.lastName}}</strong></h1>
+      <h2>{{person.location}}</h2>
+      <h3>{{person.birthdate}}</h3>
+    </div>
+  {%endfor%}
+
+  <footer class="footer">
+    <p>&copy; On Your Face</p>
+  </footer>
+
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/uploadr.js') }}"></script>
+
+</body>
+</html>

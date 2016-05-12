@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+
+
+  </style>
+  <title>Flask Multiple Upload</title>
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sss.css') }}" media="all">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        <li role="presentation" class="active"><a href="main">Home</a></li>
+        <li role="presentation"><a href="uploadPage">Upload</a></li>
+        <li role="presentation"><a href="trainPage">Train</a></li>
+        <li role="presentation"><a href="recognizePage">Recognize</a></li>
+      </ul>
+    </nav>
+    <h3 class="text-muted">OnYourFace</h3>
+  </div>
+
+  <div class="jumbotron">
+    <h1><strong>OnYourFace</strong></h1>
+    <h2><strong><u>Face Recognition for Anyone</u></strong></h2>
+    <br/>
+    <br/>
+    <br/>
+    <div class="slider">
+      <img src="{{ url_for('static', filename='images/image1.jpg') }}"/>
+      <img src="{{ url_for('static', filename='images/image2.jpg') }}"/>
+      <img src="{{ url_for('static', filename='images/image3.jpg') }}"/>
+      <img src="{{ url_for('static', filename='images/image4.jpg') }}"/>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p>&copy; On Your Face</p>
+  </footer>
+
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/uploadr.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/sss.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/sss.min.js') }}"></script>
+<script>
+  jQuery(function($) {
+  $('.slider').sss({
+    showNav : false
+  });
+  });
+</script>
+</body>
+</html>
