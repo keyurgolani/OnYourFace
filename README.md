@@ -1,4 +1,4 @@
-<img src="icon.png" align="right" />
+<img src="icon.png" align="right" width="200" height="200" />
 # OnYourFace README
 > An App to Recognize People
 
@@ -6,7 +6,7 @@ Upload a bunch of photos of you, your friends, your family or your favorite cele
 
 ## Prerequisites
 
-- The environment set up process is designed keeping specific underlying operating system in mind. Will suggest to follow the setup process below on an Ubuntu machine preferably Ubuntu 14.04 or 16.04 on which the below process is tested and working OK.
+The environment set up process is designed keeping specific underlying operating system in mind. Will suggest to follow the setup process below on an Ubuntu machine preferably Ubuntu 14.04 or 16.04 on which the below process is tested and working OK.
 
 
 ## Getting Started - Setting up the Environment
@@ -22,19 +22,19 @@ sudo apt-get install build-essential cmake git pkg-config
 ```
 
 3. Installing supporting libraries for OpenCV
-- Installing support to load various types of Images
+  - Installing support to load various types of Images
 ```
 sudo apt-get install libjpeg8-dev libtiff4-dev libjasper-dev libpng12-dev
 ```
-- Installing support for displaying images on screenshot
+  - Installing support for displaying images on screenshot
 ```
 sudo apt-get install libgtk2.0-dev
 ```
-- Installing support for image and video processing
+  - Installing support for image and video processing
 ```
 sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
 ```
-- Installing image processing routines optimization libraries
+  - Installing image processing routines optimization libraries
 ```
 sudo apt-get install libatlas-base-dev gfortran
 ```
@@ -45,7 +45,7 @@ wget https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
 ```
 
-5. 
+5.
 - [sindresorhus/pageres](https://github.com/sindresorhus/pageres) - Project logo. Clear description of what the project does. Build badges. Demo screenshot. Simple install and usage sections. Includes an examples section with common uses.
 - [petkaantonov/bluebird](https://github.com/petkaantonov/bluebird) - Build badges. Clear description of what the project does. TOC for easy navigation. Project logo. Extensive explanations and examples.
 - [jakubroztocil/httpie](https://github.com/jkbrzt/httpie) - Description of what the project does. Demo screenshots. Project logo. TOC for easy navigation. Build badges. Quick and simple installation and usage sections. Includes an examples section.
