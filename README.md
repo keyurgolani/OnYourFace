@@ -1,5 +1,5 @@
 <img src="icon.png" align="right" />
-# OnYourFace README [![OnYourFace](https://github.com/keyurgolani/OnYourFace/blob/master/OnYourFace.svg)](https://github.com/keyurgolani/OnYourFace)
+# OnYourFace README [![OnYourFace](OnYourFace.svg)](https://github.com/keyurgolani/OnYourFace)
 > A curated list of awesome README
 
 Upload a bunch of photos of you, your friends, your family or your favorite celebrity. Train the system, and recognize their other photos anytime, anywhere.
