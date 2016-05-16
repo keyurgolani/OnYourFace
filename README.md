@@ -46,13 +46,13 @@ wget https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
 ```
 
-* To avoid possible clashes with any existing development environment install [virtualenv](https://virtualenv.pypa.io/en/latest/) and [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/)
+* **To avoid possible clashes with any existing development environment install [virtualenv](https://virtualenv.pypa.io/en/latest/) and [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/)**
 ```
 sudo pip install virtualenv virtualenvwrapper
 sudo rm -rf ~/.cache/pip
 ```
 
-* Adding path variables to *.bashrc* for setting up virtualenv and virtualenvwrapper
+* **Adding path variables to *.bashrc* for setting up virtualenv and virtualenvwrapper**
 
   Add the following lines to *~/.bashrc* file using simple text editors of choice
   ```
@@ -69,7 +69,7 @@ sudo rm -rf ~/.cache/pip
   mkvirtualenv opencv
   ```
 
-* Setting up the virtual environment for deployment
+* **Setting up the virtual environment for deployment**
 
   Installing python development tools
   ```
@@ -93,18 +93,57 @@ sudo rm -rf ~/.cache/pip
   cd opencv_contrib
   git checkout 3.0.0
   ```
-  Setting up the build for installation
+  Setting up the build for compilation
   ```
   cd ~/opencv
   mkdir build
   cd build
   cmake -D CMAKE_BUILD_TYPE=RELEASE \
 	 -D CMAKE_INSTALL_PREFIX=/usr/local \
-	  -D INSTALL_C_EXAMPLES=ON \
-	   -D INSTALL_PYTHON_EXAMPLES=ON \
-	    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
-	     -D BUILD_EXAMPLES=ON ..
+   -D INSTALL_C_EXAMPLES=ON \
+   -D INSTALL_PYTHON_EXAMPLES=ON \
+   -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+   -D BUILD_EXAMPLES=ON ..
   ```
+  Compiling the code of OpenCV and Supporting Modules
+  ```
+  make -j5
+  ```
+  Installing and setting up OpenCV and the Modules
+  ```
+  sudo make install
+  sudo ldconfig
+  ```
+  Configuring the virtual environment with installed OpenCV packages
+  ```
+  cd ~/.virtualenvs/cv/lib/python2.7/site-packages/
+  ln -s /usr/local/lib/python2.7/site-packages/cv2.so cv2.so
+  ```
+  Verifying successful installation of the environment
+  ```
+  workon opencv
+  python
+  >>> import cv2
+  >>> cv2.__version__
+  '3.0.0'
+  ```
+
+* **Installing Flask for Web Application Deployment**
+```
+sudo pip install flask
+```
+
+* **Installing Pilliw for Image saving and loading**
+```
+sudo pip install Pillow
+```
+
+* **Installing JSON parsing
+```
+sudo pip install simplejson
+```
+
+
 
 ## Articles
 - ["How To Write A Readme"](http://jfhbrook.github.io/2011/11/09/readmes.html) - *Joshua Holbrook*
