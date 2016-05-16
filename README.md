@@ -10,36 +10,36 @@ The environment set up process is designed keeping specific underlying operating
 
 
 ## Getting Started - Setting up the Environment
-* Making sure that the base OS has all the latest packages.
+* **Making sure that the base OS has all the latest packages.**
 ```
 sudo apt-get update
 sudo apt-get upgrade
 ```
 
-* Installing developer tools for linux system.
+* **Installing developer tools for linux system.**
 ```
 sudo apt-get install build-essential cmake git pkg-config
 ```
 
-* Installing supporting libraries for OpenCV
-  * Installing support to load various types of Images
+* **Installing supporting libraries for OpenCV**
+Installing support to load various types of Images
 ```
 sudo apt-get install libjpeg8-dev libtiff4-dev libjasper-dev libpng12-dev
 ```
-  * Installing support for displaying images on screenshot
+Installing support for displaying images on screenshot
 ```
 sudo apt-get install libgtk2.0-dev
 ```
-  * Installing support for image and video processing
+Installing support for image and video processing
 ```
 sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
 ```
-  * Installing image processing routines optimization libraries
+Installing image processing routines optimization libraries
 ```
 sudo apt-get install libatlas-base-dev gfortran
 ```
 
-* Installing **pip**, a popular python package manager
+* **Installing *pip*, a popular python package manager**
 ```
 wget https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
