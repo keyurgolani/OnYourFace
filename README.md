@@ -22,22 +22,22 @@ sudo apt-get install build-essential cmake git pkg-config
 ```
 
 * **Installing supporting libraries for OpenCV**
-Installing support to load various types of Images
-```
-sudo apt-get install libjpeg8-dev libtiff4-dev libjasper-dev libpng12-dev
-```
-Installing support for displaying images on screenshot
-```
-sudo apt-get install libgtk2.0-dev
-```
-Installing support for image and video processing
-```
-sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
-```
-Installing image processing routines optimization libraries
-```
-sudo apt-get install libatlas-base-dev gfortran
-```
+  Installing support to load various types of Images
+  ```
+  sudo apt-get install libjpeg8-dev libtiff4-dev libjasper-dev libpng12-dev
+  ```
+  Installing support for displaying images on screenshot
+  ```
+  sudo apt-get install libgtk2.0-dev
+  ```
+  Installing support for image and video processing
+  ```
+  sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+  ```
+  Installing image processing routines optimization libraries
+  ```
+  sudo apt-get install libatlas-base-dev gfortran
+  ```
 
 * **Installing *pip*, a popular python package manager**
 ```
