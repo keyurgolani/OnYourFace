@@ -10,7 +10,7 @@ from uuid import uuid4
 app = Flask(__name__)
 mysql = MySQL()
 
-faceCascadeFile = 'OnYoutFace/static/cascades/facesCascade.xml'
+faceCascadeFile = 'OnYourFace/static/cascades/facesCascade.xml'
 
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'admin'
@@ -23,11 +23,13 @@ class Details(object):
     lastName = ""
     location = ""
     birthdate = ""
-    def __init__(self, firstName, lastName, location, birthdate):
+    confidence = 0
+    def __init__(self, firstName, lastName, location, birthdate, confidence):
         self.firstName = firstName
         self.lastName = lastName
         self.location = location
         self.birthdate = birthdate
+        self.confidence = confidence
 
 @app.route("/")
 def index():
@@ -117,9 +119,13 @@ def trainPage():
 @app.route("/train", methods=['POST'])
 def train():
 
-    cascadePath = "OnYoutFace/static/cascades/haarcascade_frontalface_default.xml"
+    cascadePath = "OnYourFace/static/cascades/haarcascade_frontalface_default.xml"
     faceCascade = cv2.CascadeClassifier(cascadePath)
     recognizer = cv2.face.createLBPHFaceRecognizer()
+    # recognizer = cv2.face.createEigenFaceRecognizer()
+    # recognizer = cv2.face.createFisherFaceRecognizer()
+    if os.path.isfile(faceCascadeFile):
+        recognizer.load(faceCascadeFile)
 
     imageRoot = "OnYourFace/static/uploads"
     count = len([f for f in os.listdir(imageRoot) if os.path.isdir(os.path.join(imageRoot, f))])
@@ -130,7 +136,8 @@ def train():
             folder = os.path.join(imageRoot, label)
             if os.path.isdir(folder):
                 for imageFile in os.listdir(folder):
-                    image_pil = Image.open(os.path.join(folder, imageFile)).convert('L')
+                    imagePath = os.path.join(folder, imageFile)
+                    image_pil = Image.open(imagePath).convert('L')
                     image = np.array(image_pil, 'uint8')
                     nbr = int(label)
                     faces = faceCascade.detectMultiScale(image)
@@ -138,13 +145,15 @@ def train():
                         images.append(image[y: y + h, x: x + w])
                         labels.append(nbr)
                         cv2.waitKey(50)
+
+        recognizer.update(images, np.array(labels))
+        recognizer.train(images, np.array(labels))
+        recognizer.save(faceCascadeFile)
+
         for label in os.listdir(imageRoot):
             folder = os.path.join(imageRoot, label)
             if os.path.isdir(folder):
                 shutil.rmtree(folder)
-
-        recognizer.train(images, np.array(labels))
-        recognizer.save(faceCascadeFile)
 
     return render_template("recon.html")
 
@@ -155,10 +164,13 @@ def recognizePage():
 @app.route("/recognize", methods=['POST'])
 def recognize():
     file = request.files['file']
-    cascadePath = "OnYoutFace/static/cascades/haarcascade_frontalface_default.xml"
+    cascadePath = "OnYourFace/static/cascades/haarcascade_frontalface_alt.xml"
     recognizePath = 'OnYourFace/static/recognize'
     recognizer = cv2.face.createLBPHFaceRecognizer()
-    recognizer.load(faceCascadeFile)
+    # recognizer = cv2.face.createEigenFaceRecognizer()
+    # recognizer = cv2.face.createFisherFaceRecognizer()
+    if os.path.isfile(faceCascadeFile):
+        recognizer.load(faceCascadeFile)
     file.save(os.path.join(recognizePath, file.filename))
     predict_image_pil = Image.open(os.path.join(recognizePath, file.filename)).convert('L')
     predict_image = np.array(predict_image_pil, 'uint8')
@@ -176,13 +188,13 @@ def recognize():
 
 def recognizePage(predicted_labels, prediction_confidences):
     people = []
-    for label in predicted_labels:
-        queryString = "select first_name, last_name, location, birthdate from tbl_details where label_id = {}".format(label)
+    for i in range(len(predicted_labels)):
+        queryString = "select first_name, last_name, location, birthdate from tbl_details where label_id = {}".format(predicted_labels[i])
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute(queryString)
         row = cursor.fetchone()
-        detail = Details(row[0], row[1], row[2], row[3])
+        detail = Details(row[0], row[1], row[2], row[3], '{0:.4g}'.format(100 - (prediction_confidences[i]/2.5)))
         people.append(detail)
     return render_template("result.html",
         peopleList = people

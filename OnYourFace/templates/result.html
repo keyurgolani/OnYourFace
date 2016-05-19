@@ -5,7 +5,7 @@
 
 
   </style>
-  <title>Flask Multiple Upload</title>
+  <title>OnYourFace - Result</title>
   <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
@@ -27,11 +27,14 @@
   </div>
 
   {%for person in peopleList:%}
-    <div class="jumbotron">
-      <h1><strong>{{person.firstName}}&nbsp;{{person.lastName}}</strong></h1>
-      <h2>{{person.location}}</h2>
-      <h3>{{person.birthdate}}</h3>
-    </div>
+    {%if person.confidence > 75:%}
+      <div class="jumbotron">
+        <h1><strong>{{person.firstName}}&nbsp;{{person.lastName}}</strong></h1>
+        <h2>{{person.location}}</h2>
+        <h3>{{person.birthdate}}</h3>
+        <h3>I am {{person.confidence}}% sure.</h3>
+      </div>
+    {%endif%}
   {%endfor%}
 
   <footer class="footer">
