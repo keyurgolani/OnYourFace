@@ -190,6 +190,7 @@ sudo apt-get install mysql-server
   ```
 
 * **Starting the Application**
+
 Making sure that we are on right virtual environment
 ```
 workon opencv
