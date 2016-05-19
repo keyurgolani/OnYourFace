@@ -1,1 +1,3 @@
 *.pyc
+
+./OnYourFace/static/cascades/facesCascade.xml
