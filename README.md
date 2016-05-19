@@ -4,6 +4,7 @@
 
 Upload a bunch of photos of you, your friends, your family or your favorite celebrity. Train the system, and recognize their other photos anytime, anywhere.
 
+
 ## Prerequisites
 
 The environment set up process is designed keeping specific underlying operating system in mind. Will suggest to follow the setup process below on an Ubuntu machine preferably Ubuntu 14.04 or 16.04 on which the below process is tested and working OK.
@@ -98,12 +99,7 @@ sudo rm -rf ~/.cache/pip
   cd ~/opencv
   mkdir build
   cd build
-  cmake -D CMAKE_BUILD_TYPE=RELEASE \
-	 -D CMAKE_INSTALL_PREFIX=/usr/local \
-   -D INSTALL_C_EXAMPLES=ON \
-   -D INSTALL_PYTHON_EXAMPLES=ON \
-   -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
-   -D BUILD_EXAMPLES=ON ..
+  cmake -D CMAKE_BUILD_TYPE=RELEASE \ -D CMAKE_INSTALL_PREFIX=/usr/local \ -D INSTALL_C_EXAMPLES=ON \ -D INSTALL_PYTHON_EXAMPLES=ON \ -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \ -D BUILD_EXAMPLES=ON ..
   ```
   Compiling the code of OpenCV and Supporting Modules
   ```
@@ -138,28 +134,97 @@ sudo pip install flask
 sudo pip install Pillow
 ```
 
-* **Installing JSON parsing
+* **Installing JSON parsing**
 ```
 sudo pip install simplejson
 ```
 
+* **Installing MySQL for Information Storage**
+```
+sudo apt-get install mysql-server
+```
 
 
-## Articles
-- ["How To Write A Readme"](http://jfhbrook.github.io/2011/11/09/readmes.html) - *Joshua Holbrook*
-- ["How To Write A Great README"](https://robots.thoughtbot.com/how-to-write-a-great-readme) - *Caleb Thompson (thoughtbot)*
-- ["Readme Driven Development"](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html) - *Tom Preston-Werner*
-- ["Top ten reasons why I won’t use your open source project"](https://changelog.com/top-ten-reasons-why-i-wont-use-your-open-source-project/) - *Adam Stacoviak*
+## Setting up the application
+* **Setting up the database**
+
+  Login as root user
+  ```
+  mysql -u root -p
+  <root account password that you set while installing mysql>
+  ```
+  Create a new database
+  ```
+  create database LabelInfo
+  use LabelInfo
+  ```
+  Create table for the label information
+  ```
+  CREATE TABLE `LabelInfo`.`tbl_details` (`label_id` BIGINT NOT NULL AUTO_INCREMENT, `first_name` VARCHAR(45) NULL, `last_name` VARCHAR(45) NULL, `location` VARCHAR(45) NULL, `birthdate` DATE NULL, PRIMARY KEY (`label_id`));
+  ```
+
+* **Giving our code the information about mysql connectivity**
+
+  Open Terminal and navigate to Home directory
+  ```
+  cd ~
+  ```
+  Download the project from github repository
+  ```
+  git clone https://github.com/keyurgolani/OnYourFace.git
+  ```
+  Find app.py into the project
+  ```
+  cd OnYourFace/OnYourFace/
+  ```
+  Open app.py in any terminal *example gedit*
+  ```
+  gedit app.py
+  ```
+  Change the mysql database user information to your instance information on lines 15 through 18
+  ```
+  app.config['MYSQL_DATABASE_USER'] = 'root'
+  app.config['MYSQL_DATABASE_PASSWORD'] = '<The password you set for root user while installing mysql>'
+  app.config['MYSQL_DATABASE_DB'] = 'LabelInfo'
+  app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+  ```
+
+* **Starting the Application**
+```
+cd ~/OnYourFace/
+python runserver.py
+```
 
 
-## Contribute
+## Using the Application
+* **Accessing the Application**
+  - The application, with the default configurations, should be up and running on localhost at 2016 port.
+  - Open your browser and access the application with following URL in address bar.
+  ```
+  https://localhost:2016/
+  ```
+* **Training the system**
+  - Go to **Upload** tab from the header of the application.
+  - Fill in the information for the person you want to upload photos of.
+  - Select multiple photos of the person in which the person's frontal face is visible. **The more photos the better. But upload the right photos.**
+  - Click the *upload* button.
+  - Repeat this step for each separate individual you want to train the application for.
+  - At the end, go to the **Train** tab on the header, click *Train*, sit back and relax for a while.
 
-Contributions are always welcome!
-Please read the [contribution guidelines](contributing.md) first.
+* **Identifying a person**
+  - After training the application with several photos, you will automatically be redirected to the recognize page. If not, you can access it through **Recognize** tab on the header.
+  - Select the photo to be recognized and click *Recognize* button at the bottom and let the application work its magic.
 
+Have a little fun with the application.
+Suggest more functionalities. I will try to integrate more and more as suggestions come in.
+**Contributions are always welcome. Let's make it big.**
 
-## License
+**Foot-note:**
+If you try to recognize a person that the application has not been trained, it will try to find the closest feature match from the people it has been trained with.
 
-[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
-
-To the extent possible under law, [Matias Singers](http://mts.io) has waived all copyright and related or neighboring rights to this work.
+**Future Plans:**
+- Integrate video capabilities for training and recognizing the face.
+- Integrating object recognition feature.
+- Integrating OCR facility.
+- Integrating nudity recognition.
+- and suggested features of course.
