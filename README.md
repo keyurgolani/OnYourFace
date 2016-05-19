@@ -7,7 +7,7 @@ Upload a bunch of photos of you, your friends, your family or your favorite cele
 
 ## Prerequisites
 
-The environment set up process is designed keeping specific underlying operating system in mind. Will suggest to follow the setup process below on an Ubuntu machine preferably Ubuntu 14.04 or 16.04 on which the below process is tested and working OK.
+The environment set up process is designed keeping specific underlying operating system in mind. Will suggest to follow the setup process below on an Ubuntu machine preferably *Ubuntu 14.04* or *Ubuntu 16.04* on which the below process is tested and working OK.
 
 
 ## Getting Started - Setting up the Environment
@@ -175,11 +175,11 @@ sudo apt-get install mysql-server
   ```
   Find app.py into the project
   ```
-  cd OnYourFace/OnYourFace/
+  cd ~/OnYourFace/OnYourFace/
   ```
   Open app.py in any terminal *example gedit*
   ```
-  gedit app.py
+  gedit ~/OnYourFace/OnYourFace/app.py
   ```
   Change the mysql database user information to your instance information on lines 15 through 18
   ```
@@ -192,7 +192,7 @@ sudo apt-get install mysql-server
 * **Starting the Application**
 ```
 cd ~/OnYourFace/
-python runserver.py
+python ~/OnYourFace/runserver.py
 ```
 
 
@@ -219,10 +219,10 @@ Have a little fun with the application.
 Suggest more functionalities. I will try to integrate more and more as suggestions come in.
 **Contributions are always welcome. Let's make it big.**
 
-**Foot-note:**
+## Foot-note:
 If you try to recognize a person that the application has not been trained, it will try to find the closest feature match from the people it has been trained with.
 
-**Future Plans:**
+## Future Plans:
 - Integrate video capabilities for training and recognizing the face.
 - Integrating object recognition feature.
 - Integrating OCR facility.
