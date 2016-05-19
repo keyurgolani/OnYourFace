@@ -7,7 +7,7 @@ Upload a bunch of photos of you, your friends, your family or your favorite cele
 
 ## Prerequisites
 
-The environment set up process is designed keeping specific underlying operating system in mind. Will suggest to follow the setup process below on an Ubuntu machine preferably *Ubuntu 14.04* or *Ubuntu 16.04* on which the below process is tested and working OK.
+The environment set up process is designed keeping specific underlying operating system in mind. Will suggest to follow the setup process below on an Ubuntu machine preferably **Ubuntu 14.04** or **Ubuntu 16.04** on which the below process is tested and working OK.
 
 
 ## Getting Started - Setting up the Environment
@@ -190,6 +190,11 @@ sudo apt-get install mysql-server
   ```
 
 * **Starting the Application**
+Making sure that we are on right virtual environment
+```
+workon opencv
+```
+Starting the Python Flask Application Server
 ```
 cd ~/OnYourFace/
 python ~/OnYourFace/runserver.py
